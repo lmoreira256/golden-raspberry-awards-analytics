@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: golden-raspberry-awards-analytics
+  datasource:
+    url: jdbc:h2:mem:golden_raspberry_awards_db
+    username: golden_raspberry_awards
+    password: golden_raspberry_awards
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        trace: false
+        web-allow-others: false
