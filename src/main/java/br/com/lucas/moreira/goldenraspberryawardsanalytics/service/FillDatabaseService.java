@@ -13,11 +13,18 @@ import java.util.List;
 public class FillDatabaseService {
 
     private final GetFileService getFileService;
+    private final SaveMovieService saveMoviesService;
     private final SaveProducerService saveProducerService;
+    private final SaveDataService saveDataService;
 
-    FillDatabaseService(GetFileService getFileService, SaveProducerService saveProducerService) {
+    FillDatabaseService(GetFileService getFileService,
+                        SaveMovieService saveMoviesService,
+                        SaveProducerService saveProducerService,
+                        SaveDataService saveDataService) {
         this.getFileService = getFileService;
+        this.saveMoviesService = saveMoviesService;
         this.saveProducerService = saveProducerService;
+        this.saveDataService = saveDataService;
     }
 
     @Value("${path.file.csv}")
@@ -25,9 +32,9 @@ public class FillDatabaseService {
 
     public void execute() throws FileNotFoundException {
         Reader file = getFileService.execute(filePath);
-        List<NominatedMovieDTO> movieDTOs = convertCsvToDto(file);
+        List<NominatedMovieDTO> nominatedMovieDTOS = convertCsvToDto(file);
 
-        saveProducerService.execute(movieDTOs);
+        saveDataService.execute(nominatedMovieDTOS);
     }
 
     private List<NominatedMovieDTO> convertCsvToDto(Reader file) {

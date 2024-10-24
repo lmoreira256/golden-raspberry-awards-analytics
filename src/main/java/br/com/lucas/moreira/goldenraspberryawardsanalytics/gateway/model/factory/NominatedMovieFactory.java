@@ -9,7 +9,6 @@ public class NominatedMovieFactory {
         return NominatedMovie.builder()
                 .year(nominatedMovieDTO.getYear())
                 .title(nominatedMovieDTO.getTitle())
-                .producers(nominatedMovieDTO.getProducers())
                 .winner(nominatedMovieDTO.isWinner())
                 .build();
     }

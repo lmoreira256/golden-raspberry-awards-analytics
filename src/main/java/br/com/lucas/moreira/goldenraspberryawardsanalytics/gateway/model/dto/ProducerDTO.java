@@ -9,11 +9,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NominatedMovieDTO {
+public class ProducerDTO {
 
-    private Integer year;
-    private String title;
-    private String studios;
-    private String producers;
-    private boolean winner;
+    private String producer;
+
+    private Integer interval;
+
+    private Integer previousWin;
+
+    private Integer followingWin;
+
 }

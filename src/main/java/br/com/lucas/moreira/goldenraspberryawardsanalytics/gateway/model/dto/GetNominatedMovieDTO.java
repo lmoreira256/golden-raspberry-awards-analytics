@@ -5,15 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NominatedMovieDTO {
+public class GetNominatedMovieDTO {
 
-    private Integer year;
-    private String title;
-    private String studios;
-    private String producers;
-    private boolean winner;
+    private List<ProducerDTO> mim;
+
+    private List<ProducerDTO> max;
+
 }

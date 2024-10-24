@@ -1,23 +1,29 @@
 package br.com.lucas.moreira.goldenraspberryawardsanalytics.service;
 
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.NominatedMovieDTO;
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.factory.NominatedMovieFactory;
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.repository.NominatedMovieRepository;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.domain.Producer;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.repository.ProducerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SaveProducerService {
 
-    private final NominatedMovieRepository nominatedMovieRepository;
+    private final ProducerRepository producerRepository;
 
-    public SaveProducerService(NominatedMovieRepository nominatedMovieRepository) {
-        this.nominatedMovieRepository = nominatedMovieRepository;
+    public SaveProducerService(ProducerRepository producerRepository) {
+        this.producerRepository = producerRepository;
     }
 
-    public void execute(List<NominatedMovieDTO> nominatedMovieDTO) {
-        nominatedMovieRepository.saveAll(nominatedMovieDTO.stream().map(NominatedMovieFactory::build).toList());
+    public List<Producer> execute(List<Producer> producers) {
+        return producers.stream().map(this::execute).toList();
+    }
+
+    public Producer execute(Producer producer) {
+        Optional<Producer> producerOptional = producerRepository.getProducerByName(producer.getName());
+
+        return producerOptional.orElseGet(() -> producerRepository.save(producer));
     }
 
 }
