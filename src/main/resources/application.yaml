@@ -12,3 +12,7 @@ spring:
       settings:
         trace: false
         web-allow-others: false
+
+path:
+  file:
+    csv: data/movielist.csv

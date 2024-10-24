@@ -16,23 +16,24 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "producer")
-public class Producer {
+@Table(name = "nominated_movie")
+public class NominatedMovie {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "year_indication")
+    private Integer year;
 
-    @Column(name = "intervalTime")
-    private Integer intervalTime;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "previousWin")
-    private Integer previousWin;
+    @Column(name = "producers")
+    private String producers;
 
-    @Column(name = "followingWin")
-    private Integer followingWin;
+    @Column(name = "winner")
+    private boolean winner;
+
 }
