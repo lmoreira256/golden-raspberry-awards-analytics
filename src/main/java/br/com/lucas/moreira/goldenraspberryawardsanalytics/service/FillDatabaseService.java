@@ -13,17 +13,11 @@ import java.util.List;
 public class FillDatabaseService {
 
     private final GetFileService getFileService;
-    private final SaveMovieService saveMoviesService;
-    private final SaveProducerService saveProducerService;
     private final SaveDataService saveDataService;
 
     FillDatabaseService(GetFileService getFileService,
-                        SaveMovieService saveMoviesService,
-                        SaveProducerService saveProducerService,
                         SaveDataService saveDataService) {
         this.getFileService = getFileService;
-        this.saveMoviesService = saveMoviesService;
-        this.saveProducerService = saveProducerService;
         this.saveDataService = saveDataService;
     }
 

@@ -11,19 +11,19 @@ import java.util.List;
 public class SaveDataService {
 
     private final SaveProducerService saveProducerService;
-    private final SaveMovieService saveMovieService;
+    private final SaveNominatedMovieService saveNominatedMovieService;
 
     SaveDataService(SaveProducerService saveProducerService,
-                    SaveMovieService saveMovieService) {
+                    SaveNominatedMovieService saveNominatedMovieService) {
         this.saveProducerService = saveProducerService;
-        this.saveMovieService = saveMovieService;
+        this.saveNominatedMovieService = saveNominatedMovieService;
     }
 
     public void execute(List<NominatedMovieDTO> nominatedMovieDTOS) {
         nominatedMovieDTOS.forEach(nominatedMovieDTO -> {
             List<Producer> producer = ProducerFactory.build(nominatedMovieDTO.getProducers());
 
-            saveMovieService.execute(nominatedMovieDTO, saveProducerService.execute(producer));
+            saveNominatedMovieService.execute(nominatedMovieDTO, saveProducerService.execute(producer));
         });
     }
 
