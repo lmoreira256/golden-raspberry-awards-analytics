@@ -2,7 +2,7 @@
 
 ## ☘️ Descrição
 
-O projeto realiza a leitura de um CSV na localidade infomada abaixo e salva os dados em um banco H2 ao realizar o start. Após isso temos um endpoint também mencionado abaixo que realiza a busca dos produtores com menor intervalo de premiação e os com o maior intervalo de premiações, exibindo o intervalo, o nome do produtor, a data da primeira premiação e a data da última premiação.
+O projeto realiza a leitura de um CSV na localidade infomada abaixo e salva os dados em um banco H2 ao realizar o start. Após isso temos um endpoint também mencionado abaixo que realiza a busca dos produtores com menor e maior intervalo de premiação, exibindo então o intervalo, nome do produtor, data da primeira premiação e a data da última premiação.
 
 ---
 
