@@ -3,6 +3,7 @@ package br.com.lucas.moreira.goldenraspberryawardsanalytics.service;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.domain.view.ProducerView;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.GetNominatedMovieDTO;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.ProducerDTO;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.factory.GetNominatedMovieDTOFactory;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.factory.ProducerDTOFactory;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.repository.ProducerRepository;
 import org.springframework.stereotype.Service;
@@ -23,22 +24,20 @@ public class GetProducersIntervalService {
         List<ProducerView> producerViews = producerRepository.getProducersWithInterval();
         List<ProducerDTO> producerDTOS = ProducerDTOFactory.build(producerViews);
 
-        return GetNominatedMovieDTO.builder()
-                .mim(getMinProducersInterval(producerDTOS))
-                .max(getMaxProducersInterval(producerDTOS))
-                .build();
+        return GetNominatedMovieDTOFactory.build(
+                getMinProducersInterval(producerDTOS), getMaxProducersInterval(producerDTOS));
     }
 
     private List<ProducerDTO> getMinProducersInterval(List<ProducerDTO> producerDTOS) {
         Integer minInterval = producerDTOS.get(0).getInterval();
 
-        return producerDTOS.stream().filter(x -> Objects.equals(x.getInterval(), minInterval)).toList();
+        return producerDTOS.stream().filter(producer -> Objects.equals(producer.getInterval(), minInterval)).toList();
     }
 
     private List<ProducerDTO> getMaxProducersInterval(List<ProducerDTO> producerDTOS) {
         Integer maxInterval = producerDTOS.get(producerDTOS.size() - 1).getInterval();
 
-        return producerDTOS.stream().filter(x -> Objects.equals(x.getInterval(), maxInterval)).toList();
+        return producerDTOS.stream().filter(producer -> Objects.equals(producer.getInterval(), maxInterval)).toList();
     }
 
 }
