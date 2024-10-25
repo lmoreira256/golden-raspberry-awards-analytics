@@ -1,6 +1,6 @@
 package br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.http;
 
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.NominatedMovieDTO;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.GetNominatedMovieDTO;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.service.GetProducersIntervalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ public class NominatedMovieResource {
 
     @CrossOrigin
     @GetMapping(value = "/get-producers-interval", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<NominatedMovieDTO> getProducersInterval() {
+    public ResponseEntity<GetNominatedMovieDTO> getProducersInterval() {
 
         return new ResponseEntity<>(getProducersIntervalService.execute(), HttpStatus.OK);
     }

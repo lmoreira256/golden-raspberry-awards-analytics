@@ -34,7 +34,7 @@ public class NominatedMovie {
     private List<Producer> producers;
 
     @Column(name = "year_indication")
-    private Integer year;
+    private Integer yearIndication;
 
     @Column(name = "title")
     private String title;
