@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/golden-raspberry-awards")
 public class NominatedMovieResource {
 
-    private GetProducersIntervalService getProducersIntervalService;
+    private final GetProducersIntervalService getProducersIntervalService;
 
     NominatedMovieResource(GetProducersIntervalService getProducersIntervalService) {
         this.getProducersIntervalService = getProducersIntervalService;
