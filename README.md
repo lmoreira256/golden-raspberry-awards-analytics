@@ -60,6 +60,16 @@ O projeto também conta com um teste de integração completo:
 
 <img src="./github_assets/screenshot_2.png">
 
+## ℹ️ Informações
+
+Para realizar o desenvolvimento do projeto foi realizado algumas consultas, segue link dos mesmos:
+
+- [Utilização do banco H2](https://www.baeldung.com/spring-boot-h2-database)
+- [Utilização do Many-to-Many na teoria](https://www.baeldung.com/jpa-many-to-many)
+- [Utilização do Many-to-Many na prática](https://medium.com/@arijit83work/manytomany-relationship-in-spring-boot-with-hibernate-and-jpa-35d7b4fdf3bf)
+- [Verificação das indicações dos filmes](https://pt.wikipedia.org/wiki/Framboesa_de_Ouro_de_pior_filme)
+- [Verificação dos produtores dos filmes indicados](https://en-m-wikipedia-org.translate.goog/wiki/Golden_Raspberry_Award_for_Worst_Picture?_x_tr_sl=en&_x_tr_tl=pt&_x_tr_hl=pt-BR&_x_tr_pto=sc)
+
 ## 📫 Contribuindo
 
 Para contribuir com o projeto, siga estas etapas:
