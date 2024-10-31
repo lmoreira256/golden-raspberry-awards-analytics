@@ -21,8 +21,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "nominated_movie")
-public class NominatedMovie {
+@Table(name = "movie")
+public class Movie {
 
     @Id
     @Column(name = "id")
@@ -30,7 +30,7 @@ public class NominatedMovie {
     private Integer id;
 
     @ManyToMany
-    @JoinTable(name = "producer_nominated_movie_mapping", joinColumns = @JoinColumn(name = "nominated_movie_id"), inverseJoinColumns = @JoinColumn(name = "producer_id"))
+    @JoinTable(name = "producer_movie", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "producer_id"))
     private List<Producer> producers;
 
     @Column(name = "year_indication")

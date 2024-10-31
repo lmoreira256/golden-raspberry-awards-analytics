@@ -30,8 +30,8 @@ public class Producer {
     private Integer id;
 
     @ManyToMany
-    @JoinTable(name = "producer_nominated_movie_mapping", joinColumns = @JoinColumn(name = "producer_id"), inverseJoinColumns = @JoinColumn(name = "nominated_movie_id"))
-    private List<NominatedMovie> nominatedMovies;
+    @JoinTable(name = "producer_movie", joinColumns = @JoinColumn(name = "producer_id"), inverseJoinColumns = @JoinColumn(name = "movie_id"))
+    private List<Movie> movies;
 
     @Column(name = "name")
     private String name;

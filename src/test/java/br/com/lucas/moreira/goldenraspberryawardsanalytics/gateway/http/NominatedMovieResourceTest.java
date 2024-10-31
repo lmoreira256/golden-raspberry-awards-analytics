@@ -1,9 +1,9 @@
 package br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.http;
 
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.domain.NominatedMovie;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.domain.Movie;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.domain.Producer;
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.GetNominatedMovieDTO;
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.repository.NominatedMovieRepository;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.GetIntervalsDTO;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.repository.MovieRepository;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.repository.ProducerRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +36,7 @@ public class NominatedMovieResourceTest {
     private ProducerRepository producerRepository;
 
     @Autowired
-    private NominatedMovieRepository nominatedMovieRepository;
+    private MovieRepository nominatedMovieRepository;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -55,38 +55,38 @@ public class NominatedMovieResourceTest {
 
         producers = producerRepository.saveAll(producers);
 
-        List<NominatedMovie> nominatedMovies = List.of(
-                NominatedMovie.builder()
+        List<Movie> nominatedMovies = List.of(
+                Movie.builder()
                         .yearIndication(2000)
                         .title("Expend4bles")
                         .producers(List.of(producers.get(0)))
                         .winner(true)
                         .build(),
-                NominatedMovie.builder()
+                Movie.builder()
                         .yearIndication(2001)
                         .title("The Mummy")
                         .producers(List.of(producers.get(0), producers.get(2)))
                         .winner(true)
                         .build(),
-                NominatedMovie.builder()
+                Movie.builder()
                         .yearIndication(2005)
                         .title("Left Behind")
                         .producers(List.of(producers.get(3), producers.get(2)))
                         .winner(true)
                         .build(),
-                NominatedMovie.builder()
+                Movie.builder()
                         .yearIndication(2007)
                         .title("Battleship")
                         .producers(List.of(producers.get(3)))
                         .winner(false)
                         .build(),
-                NominatedMovie.builder()
+                Movie.builder()
                         .yearIndication(2009)
                         .title("The Mummy")
                         .producers(List.of(producers.get(1)))
                         .winner(false)
                         .build(),
-                NominatedMovie.builder()
+                Movie.builder()
                         .yearIndication(2024)
                         .title("The Emoji Movie")
                         .producers(List.of(producers.get(3)))
@@ -105,7 +105,7 @@ public class NominatedMovieResourceTest {
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON)).andReturn();
 
         String content = result.getResponse().getContentAsString();
-        GetNominatedMovieDTO nominatedMovieDTO = objectMapper.readValue(content, GetNominatedMovieDTO.class);
+        GetIntervalsDTO nominatedMovieDTO = objectMapper.readValue(content, GetIntervalsDTO.class);
 
         assertNotNull(nominatedMovieDTO);
         assertEquals(1, nominatedMovieDTO.getMim().size());

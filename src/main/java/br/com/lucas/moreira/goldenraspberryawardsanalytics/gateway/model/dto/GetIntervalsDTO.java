@@ -5,18 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProducerDTO {
+public class GetIntervalsDTO {
 
-    private String producer;
+    private List<IntervalDTO> mim;
 
-    private Integer interval;
-
-    private Integer previousWin;
-
-    private Integer followingWin;
+    private List<IntervalDTO> max;
 
 }

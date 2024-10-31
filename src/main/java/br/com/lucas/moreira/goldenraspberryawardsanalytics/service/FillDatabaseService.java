@@ -1,6 +1,6 @@
 package br.com.lucas.moreira.goldenraspberryawardsanalytics.service;
 
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.NominatedMovieDTO;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.MovieDTO;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -26,15 +26,15 @@ public class FillDatabaseService {
 
     public void execute() throws FileNotFoundException {
         Reader file = getFileService.execute(filePath);
-        List<NominatedMovieDTO> nominatedMovieDTOS = convertCsvToDto(file);
+        List<MovieDTO> movieDTOS = convertCsvToDto(file);
 
-        saveDataService.execute(nominatedMovieDTOS);
+        saveDataService.execute(movieDTOS);
     }
 
-    private List<NominatedMovieDTO> convertCsvToDto(Reader file) {
+    private List<MovieDTO> convertCsvToDto(Reader file) {
         return new CsvToBeanBuilder(file)
                 .withSeparator(';')
-                .withType(NominatedMovieDTO.class)
+                .withType(MovieDTO.class)
                 .build().parse();
     }
 

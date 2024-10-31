@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class NominatedMovieDTO {
+public class MovieDTO {
 
     private Integer year;
     private String title;

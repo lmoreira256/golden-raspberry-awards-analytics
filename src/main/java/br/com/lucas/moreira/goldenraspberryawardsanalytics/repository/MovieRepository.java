@@ -1,9 +1,9 @@
 package br.com.lucas.moreira.goldenraspberryawardsanalytics.repository;
 
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.domain.NominatedMovie;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.domain.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NominatedMovieRepository extends JpaRepository<NominatedMovie, Integer> {
+public interface MovieRepository extends JpaRepository<Movie, Integer> {
 }
