@@ -14,13 +14,23 @@ public interface ProducerRepository extends JpaRepository<Producer, Integer> {
 
     Optional<Producer> getProducerByName(String name);
 
-    @Query(value = "SELECT p.name AS producer, MIN(nm.year_indication) AS previousWin, MAX(nm.year_indication) AS followingWin,  MAX(nm.year_indication) - MIN(nm.year_indication) AS intervalValue " +
-            "FROM producer p " +
-            "INNER JOIN producer_nominated_movie_mapping AS pnm ON pnm.producer_id = p.id " +
-            "INNER JOIN nominated_movie AS nm ON nm.id = pnm.nominated_movie_id AND nm.winner = true " +
-            "GROUP BY p.name " +
-            "HAVING COUNT(p.name) > 1 " +
-            "ORDER BY intervalValue ASC ", nativeQuery = true)
+    @Query(value = "SELECT " +
+            "PRODUCER, " +
+            "YEAR_DIFF AS INTERVAL_VALUE, " +
+            "YEAR1 AS PREVIOUS_WIN, " +
+            "YEAR2 AS FOLLOWING_WIN " +
+            "FROM ( " +
+            " SELECT " +
+            "   P.NAME AS PRODUCER, " +
+            "   M.YEAR_INDICATION AS YEAR1, " +
+            "   LEAD(M.YEAR_INDICATION) OVER (PARTITION BY P.ID ORDER BY M.YEAR_INDICATION) AS YEAR2, " +
+            "   LEAD(M.YEAR_INDICATION) OVER (PARTITION BY P.ID ORDER BY M.YEAR_INDICATION) - M.YEAR_INDICATION AS YEAR_DIFF " +
+            "FROM PRODUCER AS P " +
+            "JOIN PRODUCER_MOVIE AS PM ON P.ID = PM.PRODUCER_ID " +
+            "JOIN MOVIE AS M ON PM.MOVIE_ID = M.ID AND M.WINNER = TRUE " +
+            ") AS PRODUCER_INTERVALS " +
+            "WHERE PRODUCER_INTERVALS.YEAR_DIFF IS NOT NULL " +
+            "ORDER BY INTERVAL_VALUE, PREVIOUS_WIN", nativeQuery = true)
     List<ProducerView> getProducersWithInterval();
 
 }

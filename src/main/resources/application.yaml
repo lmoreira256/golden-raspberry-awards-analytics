@@ -15,4 +15,4 @@ spring:
 
 path:
   file:
-    csv: data/movies.csv
+    csv: data/movielist.csv

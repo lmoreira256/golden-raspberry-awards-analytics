@@ -5,16 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetNominatedMovieDTO {
+public class IntervalDTO {
 
-    private List<ProducerDTO> mim;
+    private String producer;
 
-    private List<ProducerDTO> max;
+    private Integer interval;
+
+    private Integer previousWin;
+
+    private Integer followingWin;
 
 }

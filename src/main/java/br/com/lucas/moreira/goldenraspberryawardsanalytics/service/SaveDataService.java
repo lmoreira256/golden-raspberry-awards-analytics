@@ -1,7 +1,7 @@
 package br.com.lucas.moreira.goldenraspberryawardsanalytics.service;
 
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.domain.Producer;
-import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.NominatedMovieDTO;
+import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.dto.MovieDTO;
 import br.com.lucas.moreira.goldenraspberryawardsanalytics.gateway.model.factory.ProducerFactory;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +11,19 @@ import java.util.List;
 public class SaveDataService {
 
     private final SaveProducerService saveProducerService;
-    private final SaveNominatedMovieService saveNominatedMovieService;
+    private final SaveMovieService saveMovieService;
 
     SaveDataService(SaveProducerService saveProducerService,
-                    SaveNominatedMovieService saveNominatedMovieService) {
+                    SaveMovieService saveMovieService) {
         this.saveProducerService = saveProducerService;
-        this.saveNominatedMovieService = saveNominatedMovieService;
+        this.saveMovieService = saveMovieService;
     }
 
-    public void execute(List<NominatedMovieDTO> nominatedMovieDTOS) {
-        nominatedMovieDTOS.forEach(nominatedMovieDTO -> {
-            List<Producer> producer = ProducerFactory.build(nominatedMovieDTO.getProducers());
+    public void execute(List<MovieDTO> movieDTOS) {
+        movieDTOS.forEach(movieDTO -> {
+            List<Producer> producer = ProducerFactory.build(movieDTO.getProducers());
 
-            saveNominatedMovieService.execute(nominatedMovieDTO, saveProducerService.execute(producer));
+            saveMovieService.execute(movieDTO, saveProducerService.execute(producer));
         });
     }
 
